@@ -1,0 +1,9 @@
+tools/
+
+Ignore generated output files
+*.out
+*.hack
+*.mif
+
+# Ignore OS specific files
+.DS_Store
