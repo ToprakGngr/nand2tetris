@@ -10,7 +10,7 @@
  *     Write: if load(t-1) then Memory[address(t-1)](t) = in(t-1)
  * In words: the chip always outputs the value stored at the memory 
  * location specified by address. If load=1, the in value is loaded 
- * into the memory location specified by address. This value becomes 
+ * into memory location specified by address. This value becomes 
  * available through the out output from the next time step onward.
  * Address space rules:
  * Only the upper 16K+8K+1 words of the Memory chip are used. 
@@ -25,5 +25,10 @@ CHIP Memory {
     OUT out[16];
 
     PARTS:
-	//// Replace this comment with your code.
+	DMux(in=load, sel=address[14], a=loadRam, b=loadKYBorScreen);
+    DMux(in=loadKYBorScreen, sel=address[13], a=loadScreen, b=loadKYB);
+    RAM16K(in=in, load=loadRam, address=address[0..13], out=outRam);
+    Screen(in=in, load=loadScreen, address=address[0..12], out=outScreen);
+    Keyboard(out=outKYB);
+    Mux4Way16(a=outRam, b=outRam, c=outScreen, d=outKYB, sel=address[13..14], out=out);
 }
