@@ -32,5 +32,17 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-	//// Replace this comment with your code.
+    // first mux
+	Mux16(a=instruction, b=ALUout, sel=instruction[15], out=inAreg);
+    // is A or C inst. with dest A
+    Not(in=instructions[15], out=isAinst);
+    And(a=instructions[15], b=instructions[5], out=isCdestA);
+    Or(a=isAinst, b=isCestA, out=loadA);
+    ARegister(in=inAreg, load=loadA, out=outA);
+    
+
+
+
+
+
 }
