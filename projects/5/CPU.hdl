@@ -32,7 +32,7 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-    // first mux
+    // first mux, ALUout and instruction
 	Mux16(a=instruction, b=ALUout, sel=instruction[15], out=inAreg);
     // is A or C inst. with dest A
     Not(in=instructions[15], out=isAinst);
@@ -40,6 +40,25 @@ CHIP CPU {
     Or(a=isAinst, b=isCestA, out=loadA);
     ARegister(in=inAreg, load=loadA, out=outA);
     
+    // second mux, outA and inM
+    Mux16(a=outA, b=inM, sel=instructions[12], out=inALU);
+    
+    // D register
+    And(a=instructions[15], b=instructions[4], out=isCdestD);
+    DRegister(in=ALUout, load=isCdestD, out=outD);
+
+    // ALU
+    ALU(x=outD, y=inALU, zx=instructions[11], nx=instructions[10], zy=instructions[9],
+    ny=instructions[8], f=instructions[7], no=instructions[6],
+    out=ALUout,
+    out=outM,
+    zr=zr,
+    ng=ng
+    );
+
+
+
+
 
 
 
