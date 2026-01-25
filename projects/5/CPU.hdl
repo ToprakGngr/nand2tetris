@@ -38,7 +38,7 @@ CHIP CPU {
     Not(in=instruction[15], out=isAinst);
     And(a=instruction[15], b=instruction[5], out=isCdestA);
     Or(a=isAinst, b=isCdestA, out=loadA);
-    ARegister(in=inAreg, load=loadA, out=outA);
+    ARegister(in=inAreg, load=loadA, out=outA, out[0..14]=addressM);
     
     // second mux, outA and inM
     Mux16(a=outA, b=inM, sel=instruction[12], out=inALU);
@@ -73,7 +73,7 @@ CHIP CPU {
     Or(a=JLE, b=JGT, out=JMP);
     // Verify it is C inst
     And(a=instruction[15], b=JMP, out=JMPRequest);
-    PC(in=outA, load=JMPRequest, inc=true, reset=reset, out=pc); 
+    PC(in=outA, load=JMPRequest, inc=true, reset=reset, out[0..14]=pc); 
 
     And(a=instruction[15], b=instruction[3], out=writeM);
 }
