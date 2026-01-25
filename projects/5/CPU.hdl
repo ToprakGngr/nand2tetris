@@ -75,4 +75,5 @@ CHIP CPU {
     And(a=instruction[15], b=JMP, out=JMPRequest);
     PC(in=outA, load=JMPRequest, inc=true, reset=reset, out=pc); 
 
+    And(a=instruction[15], b=instruction[3], out=writeM);
 }
