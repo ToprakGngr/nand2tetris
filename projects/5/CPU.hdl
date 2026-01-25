@@ -56,12 +56,16 @@ CHIP CPU {
     ng=ng
     );
 
-
-
-
-
-
-
-
+    // PC
+    // ng
+    And(a=instructions[2], b=ng, out=JLT);
+    // zr
+    And(a=instructions[1], b=zr, out=JEQ);
+    // pos
+    // need to verify it is actually positive. If it is not negative AND not zero, then it is positive
+    Not(in=ng, out=notNeg);
+    Not(in=zr, out=notZero);
+    And(a=notNeg, b=notZero, out=loadPos);
+    And(a=instructions[0], b=loadPos, out=JGT);
 
 }
