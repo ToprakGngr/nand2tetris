@@ -35,21 +35,21 @@ CHIP CPU {
     // first mux, ALUout and instruction
 	Mux16(a=instruction, b=ALUout, sel=instruction[15], out=inAreg);
     // is A or C inst. with dest A
-    Not(in=instructions[15], out=isAinst);
-    And(a=instructions[15], b=instructions[5], out=isCdestA);
-    Or(a=isAinst, b=isCestA, out=loadA);
+    Not(in=instruction[15], out=isAinst);
+    And(a=instruction[15], b=instruction[5], out=isCdestA);
+    Or(a=isAinst, b=isCdestA, out=loadA);
     ARegister(in=inAreg, load=loadA, out=outA);
     
     // second mux, outA and inM
-    Mux16(a=outA, b=inM, sel=instructions[12], out=inALU);
+    Mux16(a=outA, b=inM, sel=instruction[12], out=inALU);
     
     // D register
-    And(a=instructions[15], b=instructions[4], out=isCdestD);
+    And(a=instruction[15], b=instruction[4], out=isCdestD);
     DRegister(in=ALUout, load=isCdestD, out=outD);
 
     // ALU
-    ALU(x=outD, y=inALU, zx=instructions[11], nx=instructions[10], zy=instructions[9],
-    ny=instructions[8], f=instructions[7], no=instructions[6],
+    ALU(x=outD, y=inALU, zx=instruction[11], nx=instruction[10], zy=instruction[9],
+    ny=instruction[8], f=instruction[7], no=instruction[6],
     out=ALUout,
     out=outM,
     zr=zr,
@@ -58,14 +58,14 @@ CHIP CPU {
 
     // PC
     // ng
-    And(a=instructions[2], b=ng, out=JLT);
+    And(a=instruction[2], b=ng, out=JLT);
     // zr
-    And(a=instructions[1], b=zr, out=JEQ);
+    And(a=instruction[1], b=zr, out=JEQ);
     // pos
     // need to verify it is actually positive. If it is not negative AND not zero, then it is positive
     Not(in=ng, out=notNeg);
     Not(in=zr, out=notZero);
     And(a=notNeg, b=notZero, out=loadPos);
-    And(a=instructions[0], b=loadPos, out=JGT);
+    And(a=instruction[0], b=loadPos, out=JGT);
 
 }
