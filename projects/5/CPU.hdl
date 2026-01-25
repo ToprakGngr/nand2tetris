@@ -68,4 +68,11 @@ CHIP CPU {
     And(a=notNeg, b=notZero, out=loadPos);
     And(a=instruction[0], b=loadPos, out=JGT);
 
+    // Combine JMP
+    Or(a=JLT, b=JEQ, out=JLE);
+    Or(a=JLE, b=JGT, out=JMP);
+    // Verify it is C inst
+    And(a=instruction[15], b=JMP, out=JMPRequest);
+    PC(in=outA, load=JMPRequest, inc=true, reset=reset, out=pc); 
+
 }
