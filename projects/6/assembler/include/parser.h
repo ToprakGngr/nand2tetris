@@ -20,7 +20,10 @@ class Parser {
 
         void advance();
         InstructionType instructionType();
-        void symbol_extractor();
+        std::string symbol();
+        std::string dest();
+        std::string comp();
+        std::string jump();
         
 };
 

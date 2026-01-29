@@ -29,6 +29,12 @@ InstructionType Parser::instructionType() {
     else return C_TYPE;
 }
 
-void Parser::symbol_extractor() {
-        
+// A-Type instructions and Labels
+std::string Parser::symbol() {
+    if(instructionType() == A_TYPE){
+        return currentCommand.substr(1);
+    }
+    if(instructionType() == L_TYPE){
+        return currentCommand.substr(1, currentCommand.length() - 2);
+    }
 }
