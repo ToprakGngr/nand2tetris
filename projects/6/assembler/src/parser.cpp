@@ -42,7 +42,7 @@ std::string Parser::symbol() {
 // destination, D
 std::string Parser::dest() { 
     size_t equalPos = currentCommand.find("=");
-    if(equalPos != std::strig::npos){
+    if(equalPos != std::string::npos){
         return currentCommand.substr(0, equalPos);
     }
     return "";
@@ -53,19 +53,17 @@ std::string Parser::comp() {
     size_t equalPos = currentCommand.find('=');
     size_t semiclnPos = currentCommand.find(';');
 
-    int start = (equalPos == std::strig::npos) ? 0 : equalPOs + 1;
+    int start = (equalPos == std::string::npos) ? 0 : equalPos + 1;
     int end = (semiclnPos == std::string::npos) ? currentCommand.length(): semiclnPos;
 
     return currentCommand.substr(start, end - start);
 }
 
-
-
-
-
-
-
-
-
-
-
+// fetch after ;
+std::string Parser::jump() {
+    size_t semiclnPos = currentCommand.find(';');
+    if(semiclnPos != std::string::npos){
+        return currentCommand.substr(semiclnPos + 1);
+    }
+    return "";
+}
