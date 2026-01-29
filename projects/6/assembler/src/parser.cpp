@@ -9,7 +9,7 @@ void Parser::advance() {
         
         // 1. Remove comments
         size_t commontPos = line.find("//");
-        if(commentPos != std::npos) {
+        if(commentPos != std::string::npos) {
             line = line.substr(0, commentPos);
         }
         
@@ -38,3 +38,34 @@ std::string Parser::symbol() {
         return currentCommand.substr(1, currentCommand.length() - 2);
     }
 }
+
+// destination, D
+std::string Parser::dest() { 
+    size_t equalPos = currentCommand.find("=");
+    if(equalPos != std::strig::npos){
+        return currentCommand.substr(0, equalPos);
+    }
+    return "";
+}
+
+// Comp. happens after = OR before ;
+std::string Parser::comp() {
+    size_t equalPos = currentCommand.find('=');
+    size_t semiclnPos = currentCommand.find(';');
+
+    int start = (equalPos == std::strig::npos) ? 0 : equalPOs + 1;
+    int end = (semiclnPos == std::string::npos) ? currentCommand.length(): semiclnPos;
+
+    return currentCommand.substr(start, end - start);
+}
+
+
+
+
+
+
+
+
+
+
+
