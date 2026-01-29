@@ -22,3 +22,13 @@ void Parser::advance() {
         return;
     }
 }
+
+InstructionType Parser::instructionType() {
+    if(currentCommand[0] == '@') return A_TYPE;
+    if(currentCommand[0] == '(') return L_TYPE;
+    else return C_TYPE;
+}
+
+void Parser::symbol_extractor() {
+        
+}

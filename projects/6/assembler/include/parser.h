@@ -4,6 +4,12 @@
 #include <string>
 #include <fstream>
 
+enum InstructionType {
+    A_TYPE, 
+    L_TYPE, 
+    C_TYPE
+};
+
 class Parser {
     private:
         std::ifstream inputFile;
