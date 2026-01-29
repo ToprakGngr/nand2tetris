@@ -19,6 +19,9 @@ class Parser {
         Parser(std::string filename);
 
         void advance();
+        InstructionType instructionType();
+        void symbol_extractor();
+        
 };
 
 
