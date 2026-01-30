@@ -3,7 +3,7 @@
 
 // All of the tables filled according to the Project 4 documents
 
-std::string dest(const std::string& mnemonic) {
+std::string Code::dest(const std::string& mnemonic) {
     if(mnemonic.empty()) return "000";
 
     static const std::unordered_map<std::string, std::string> dest_table = {
@@ -19,7 +19,7 @@ std::string dest(const std::string& mnemonic) {
     if(dest_table.count(mnemonic)) return dest_table.at(mnemonic);
     
     // invalid, still return default 000
-    return "000"
+    return "000";
 }
 
 // Trick in this function, ALU takes 2 inputs: D register and Mux output
@@ -28,7 +28,7 @@ std::string dest(const std::string& mnemonic) {
 // Which means, D+A and D+M is strictly the same for ALU
 // Only difference is abit is 0 (A) or 1 (M)
 // We keep it seperate with a flag and concatane it later
-std::string comp(const std::string& mnemonic){
+std::string Code::comp(const std::string& mnemonic){
     std::string aBit = "0";
     std::string cleanMne = mnemonic;
 
@@ -70,7 +70,7 @@ std::string comp(const std::string& mnemonic){
 
 }
 
-std::string jump(const std::string& mnemonic){
+std::string Code::jump(const std::string& mnemonic){
      if(mnemonic.empty()) return "000";
 
     static const std::unordered_map<std::string, std::string> jump_table = {
@@ -87,5 +87,5 @@ std::string jump(const std::string& mnemonic){
     if(jump_table.count(mnemonic)) return jump_table.at(mnemonic);
     
     // invalid, still return default 000
-    return "000"
+    return "000";
 }
