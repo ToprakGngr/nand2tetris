@@ -4,6 +4,12 @@ Ignore generated output files
 *.out
 *.hack
 *.mif
+HackAssembler
+ParserTest
+ParserTester
+tests/ParserTest
+tests/ParserTester
+
 
 # Ignore OS specific files
 .DS_Store
