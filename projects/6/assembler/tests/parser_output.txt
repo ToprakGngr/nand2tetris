@@ -1,0 +1,24 @@
+Testing Parser on: test.asm
+
+TYPE           SYMBOL         DEST      COMP      JUMP      
+------------------------------------------------------------
+A_COMMAND      100            n/a       n/a       n/a
+A_COMMAND      sum            n/a       n/a       n/a
+L_COMMAND      LOOP           n/a       n/a       n/a
+L_COMMAND      END            n/a       n/a       n/a
+C_COMMAND      n/a            [D]       [M]       []        
+C_COMMAND      n/a            [M]       [D+1]     []        
+C_COMMAND      n/a            []        [0]       [JMP]     
+C_COMMAND      n/a            []        [D]       [JGT]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
+C_COMMAND      n/a            [MD]      [M-1]     [JEQ]     
