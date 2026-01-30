@@ -16,7 +16,7 @@ class Parser {
         std::string currentCommand;
 
     public:
-        Parser(std::string filename);
+        Parser(const std::string& filename);
 
         void advance();
         InstructionType instructionType();
