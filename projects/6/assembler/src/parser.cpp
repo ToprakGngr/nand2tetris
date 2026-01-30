@@ -1,6 +1,16 @@
 #include <string>
 #include <fstream>
+#include <iostream>
 #include "parser.h"
+
+Parser::Parser(const std::string& filename) {
+    inputFile.open(filename);
+
+    if(!inputFile.is_open()){
+        std::cerr << "Error: could not open file " << filename << std::endl;
+        exit(1);
+    }
+}
 
 void Parser::advance() {
     std::string line;
@@ -8,7 +18,7 @@ void Parser::advance() {
     while(std::getline(inputFile, line)) {
         
         // 1. Remove comments
-        size_t commontPos = line.find("//");
+        size_t commentPos = line.find("//");
         if(commentPos != std::string::npos) {
             line = line.substr(0, commentPos);
         }
@@ -37,6 +47,7 @@ std::string Parser::symbol() {
     if(instructionType() == L_TYPE){
         return currentCommand.substr(1, currentCommand.length() - 2);
     }
+    return "";
 }
 
 // destination, D
