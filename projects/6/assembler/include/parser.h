@@ -20,6 +20,7 @@ class Parser {
 
         void advance();
         InstructionType instructionType();
+        bool hasMoreLines();
         std::string symbol();
         std::string dest();
         std::string comp();

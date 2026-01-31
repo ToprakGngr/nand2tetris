@@ -12,11 +12,22 @@ Parser::Parser(const std::string& filename) {
     }
 }
 
+bool Parser::hasMoreLines() {
+    char c;
+    if(inputFile.get(c)) {
+        if(!isspace(c)) {
+            inputFile.putback(c);
+            return true;
+        }
+    }
+    return false;
+}
+
 void Parser::advance() {
+    if (!hasMoreLines()) return;
     std::string line;
 
     while(std::getline(inputFile, line)) {
-        
         // 1. Remove comments
         size_t commentPos = line.find("//");
         if(commentPos != std::string::npos) {
