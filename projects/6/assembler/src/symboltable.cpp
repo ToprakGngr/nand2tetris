@@ -13,7 +13,8 @@ void SymbolTable::initializePreDefined() {
 
     symbol_table.insert({"KBD", 24576});
     symbol_table.insert({"THAT", 16384});
-    
+}
 
-
+SymbolTable::SymbolTable() {
+    initializePreDefined();
 }
