@@ -18,3 +18,7 @@ void SymbolTable::initializePreDefined() {
 SymbolTable::SymbolTable() {
     initializePreDefined();
 }
+
+void SymbolTable::add(const std::string& symbol, int address){
+    symbol_table.insert({symbol, address});
+}
