@@ -10,9 +10,9 @@ class SymbolTable {
         void initializePreDefined();
     public:
         SymbolTable();
-        void add();
-
-
+        void add(const std::string& symbol, int address);
+        bool exists(const std::string& symbol);
+        int retrieve(const std::string& symbol);
 };
 
 #endif
