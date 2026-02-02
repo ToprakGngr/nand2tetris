@@ -19,6 +19,14 @@ SymbolTable::SymbolTable() {
     initializePreDefined();
 }
 
-void SymbolTable::add(const std::string& symbol, int address){
+void SymbolTable::add(const std::string& symbol, int address) {
     symbol_table.insert({symbol, address});
+}
+
+bool SymbolTable::exists(const std::string& symbol) {
+    return symbol_table.count(symbol);
+}
+
+int SymbolTable::retrieve(const std::string& symbol) {
+    return symbol_table.at(symbol);
 }
