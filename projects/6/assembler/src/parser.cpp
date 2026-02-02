@@ -23,8 +23,7 @@ bool Parser::hasMoreLines() {
     return false;
 }
 
-void Parser::advance() {
-    if (!hasMoreLines()) return;
+bool Parser::advance() {
     std::string line;
 
     while(std::getline(inputFile, line)) {
@@ -40,8 +39,9 @@ void Parser::advance() {
         if(line.empty()) continue;
 
         currentCommand = line;
-        return;
+        return true;
     }
+    return false;
 }
 
 InstructionType Parser::instructionType() {
