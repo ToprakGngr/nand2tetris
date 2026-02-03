@@ -10,6 +10,7 @@ ParserTester
 tests/ParserTest
 tests/ParserTester
 
+.vscode
 
 # Ignore OS specific files
 .DS_Store
