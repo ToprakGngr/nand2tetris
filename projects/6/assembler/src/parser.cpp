@@ -44,6 +44,12 @@ bool Parser::advance() {
     return false;
 }
 
+// move the cursor to the beginning
+void Parser::reset() {
+    inputFile.clear();
+    inputFile.seekg(0);
+}
+
 InstructionType Parser::instructionType() {
     if(currentCommand[0] == '@') return A_TYPE;
     if(currentCommand[0] == '(') return L_TYPE;

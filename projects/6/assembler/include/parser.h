@@ -19,6 +19,7 @@ class Parser {
         Parser(const std::string& filename);
 
         bool advance();
+        void reset();
         InstructionType instructionType();
         bool hasMoreLines();
         std::string symbol();
