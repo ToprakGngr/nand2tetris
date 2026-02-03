@@ -13,5 +13,18 @@ int main(int argc, char* argv[]) {
     }
 
     std::string inputFileName = argv[1];
-    std::string outputFileName = inputFileName.substr(0, inputFileName.find_last_of(".")) + ".hack";     
+    std::string outputFileName = inputFileName.substr(0, inputFileName.find_last_of(".")) + ".hack"; 
+    
+    std::cout << "Assembler is working: " << inputFileName << " -> " << outputFileName << std::endl;
+
+    int romAddress = 0;
+    Parser parser(inputFileName);
+    Code code;
+    SymbolTable symbolTable;
+
+    // 1. pass to collect the labels
+    while(parser.advance()) {
+        
+    }
+
 }
