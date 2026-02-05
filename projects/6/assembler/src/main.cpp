@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
     while (parser.advance()) {
         insType = parser.instructionType();
         std::string instruction;
+        std::string output = "";
 
         // we aready handle this in the 1st pass
         if(insType == L_TYPE) continue;
@@ -58,6 +59,23 @@ int main(int argc, char* argv[]) {
             if(isdigit(instruction[0])) {
                 int value = std::stoi(instruction);
                 std::string binary = std::bitset<16>(value).to_string();
+                output = binary;
+            }
+
+            // for the simplicty I do not add complex checks because:
+            // the course assumes that the input file will be fine
+            else {
+                int address;
+
+                if(symbolTable.exists(instruction)){
+                    address = symbolTable.retrieve(instruction);
+                }
+                else {
+                    address = ramAddress;
+                    symbolTable.add(instruction, address);
+                    ramAddress++;
+                }
+                output = std::bitset<16>().to_string();
             }
         }
 
