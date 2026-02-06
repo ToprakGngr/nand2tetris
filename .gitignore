@@ -9,6 +9,7 @@ ParserTest
 ParserTester
 tests/ParserTest
 tests/ParserTester
+Assembler
 
 .vscode
 
