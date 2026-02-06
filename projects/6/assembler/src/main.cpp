@@ -5,6 +5,7 @@
 #include "code.h"
 #include "symboltable.h"
 #include <bitset>
+#include <fstream>
 
 int main(int argc, char* argv[]) {
     // if no file is given
@@ -15,7 +16,13 @@ int main(int argc, char* argv[]) {
 
     std::string inputFileName = argv[1];
     std::string outputFileName = inputFileName.substr(0, inputFileName.find_last_of(".")) + ".hack"; 
-    
+    std::ofstream outputFile(outputFileName);
+
+    if (!outputFile.is_open()) {
+        std::cerr << "Error: Could not open output file " << outputFileName << std::endl;
+        return 1;
+    }
+
     std::cout << "Assembler is working: " << inputFileName << " -> " << outputFileName << std::endl;
 
     Parser parser(inputFileName);
@@ -90,5 +97,9 @@ int main(int argc, char* argv[]) {
 
             output = "111" + comp_bin + dest_bin + jump_bin;
         }
+    
+        outputFile << output << std::endl;
     }
+    outputFile.close();
+    return 0;
 }
