@@ -13,7 +13,8 @@ std::string Code::dest(const std::string& mnemonic) {
         {"AD", "110"},
         {"AM", "101"},
         {"DM", "011"},
-        {"AMD", "111"}
+        {"AMD", "111"},
+        {"MD", "011"}
     };
 
     if(dest_table.count(mnemonic)) return dest_table.at(mnemonic);
