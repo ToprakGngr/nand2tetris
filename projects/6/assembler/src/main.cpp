@@ -79,7 +79,16 @@ int main(int argc, char* argv[]) {
             }
         }
 
-    }
-    
+        if(insType == C_TYPE) {
+            std::string dest = parser.dest();
+            std::string comp = parser.comp();
+            std::string jump = parser.jump();
 
+            std::string dest_bin = code.dest(dest);
+            std::string comp_bin = code.comp(comp);
+            std::string jump_bin = code.jump(jump);
+
+            output = "111" + comp_bin + dest_bin + jump_bin;
+        }
+    }
 }
