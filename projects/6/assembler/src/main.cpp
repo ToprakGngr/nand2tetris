@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
                     symbolTable.add(instruction, address);
                     ramAddress++;
                 }
-                output = std::bitset<16>().to_string();
+                output = std::bitset<16>(address).to_string();
             }
         }
 
