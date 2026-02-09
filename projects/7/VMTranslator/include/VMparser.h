@@ -1,5 +1,5 @@
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef VMPARSER_H
+#define VMPARSER_H
 
 #include <fstream>
 #include <string>
@@ -10,12 +10,12 @@ enum InstructionType {
     ARITHMETIC_TYPE
 };
 
-class Parser {
+class VMParser {
     private:
         std::ifstream inputFile;
         std::string currentCommand;
     public:
-        Parser(const std::string& filename);
+        VMParser(const std::string& filename);
         InstructionType instructionType();
         
         bool hasMoreLines();
