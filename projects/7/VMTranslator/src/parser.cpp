@@ -69,3 +69,14 @@ InstructionType VMParser::instructionType() {
     // will change it later as different types will be introduced
     return ARITHMETIC_TYPE;
 }
+
+std::string VMParser::arg1() {
+    // command is the argument
+    if(InstructionType() == ARITHMETIC_TYPE) return args[0];
+    // ex: push constant 26 -> constant is the arg 1
+    return args[1];
+}
+
+int VMParser::arg2() {
+    return std::stoi(args[2]);
+}
