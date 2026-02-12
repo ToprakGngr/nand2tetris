@@ -1,7 +1,8 @@
-#include <string>
-#include <fstream>
 #include <iostream>
 #include "VMparser.h"
+#include <algorithm> 
+#include <cctype>
+#include <string>
 
 VMParser::VMParser(const std::string& filename) {
     inputFile.open(filename);
@@ -10,6 +11,19 @@ VMParser::VMParser(const std::string& filename) {
         std::cerr << "Error: could not open file " << filename << std::endl;
         exit(1);
     }
+}
+
+static inline void ltrim(std::string& s) {
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char c) {return !std::isspace(c);}));
+}
+
+static inline void rtrim(std::string& s) {
+    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char c) {return !std::isspace(c);}).base(), s.end());
+}
+
+static inline void trim(std::string &s) {
+    ltrim(s);
+    rtrim(s);
 }
 
 bool VMParser::advance() {
@@ -22,8 +36,8 @@ bool VMParser::advance() {
             line = line.substr(0, commentPos);
         }
         
-        // 2. Erase all whitespaces within the line
-        std::erase_if(line, [](unsigned char c) { return std::isspace(c); });
+        // 2. Erase whitespaces before and after the command
+        trim(line);
 
         if(line.empty()) continue;
 
