@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <string>
+#include <vector>
 
 enum InstructionType {
     PUSH_TYPE,
@@ -14,6 +15,7 @@ class VMParser {
     private:
         std::ifstream inputFile;
         std::string currentCommand;
+        std::vector<std::string> args;
     public:
         VMParser(const std::string& filename);
         InstructionType instructionType();
