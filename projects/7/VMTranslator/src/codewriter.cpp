@@ -51,4 +51,9 @@ void CodeWriter::writeArithmetic(const std::string command) {
         outputFile << "M=D|M" << std::endl;
     }
 
+    else if (command == "not") {
+        outputFile << "@SP" << std::endl;
+        outputFile << "A=M-1" << std::endl;
+        outputFile << "M=!M" << std::endl; 
+    }
 }
