@@ -43,7 +43,7 @@ void CodeWriter::writeArithmetic(const std::string command) {
         outputFile << "M=D&M" << std::endl;
     }
 
-    else if (command == "not") {
+    else if (command == "or") {
         outputFile << "@SP" << std::endl;
         outputFile << "AM=M-1" << std::endl;
         outputFile << "D=M" << std::endl;
