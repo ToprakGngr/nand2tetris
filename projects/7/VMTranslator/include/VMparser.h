@@ -4,12 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
-enum InstructionType {
-    PUSH_TYPE,
-    POP_TYPE,
-    ARITHMETIC_TYPE
-};
+#include "types.h"
 
 class VMParser {
     private:
