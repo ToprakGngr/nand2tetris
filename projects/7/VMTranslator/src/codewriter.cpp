@@ -21,4 +21,12 @@ void CodeWriter::writeArithmetic(const std::string command) {
         outputFile << "D=D+M" << std::endl;
     }
 
+    if(command == "sub") {
+        outputFile << "@SP" << std::endl;
+        outputFile << "AM=M-1" << std::endl;
+        outputFile << "D=M" << std::endl;
+        outputFile << "A=A-1" << std::endl;
+        outputFile << "D=M-D" << std::endl;
+    }
+
 }
