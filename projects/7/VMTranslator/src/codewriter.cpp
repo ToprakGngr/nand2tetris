@@ -21,7 +21,7 @@ void CodeWriter::writeArithmetic(const std::string command) {
         outputFile << "D=D+M" << std::endl;
     }
 
-    if(command == "sub") {
+    else if(command == "sub") {
         outputFile << "@SP" << std::endl;
         outputFile << "AM=M-1" << std::endl;
         outputFile << "D=M" << std::endl;
@@ -29,10 +29,19 @@ void CodeWriter::writeArithmetic(const std::string command) {
         outputFile << "D=M-D" << std::endl;
     }
 
-    if(command == "neg") {
+    else if(command == "neg") {
         outputFile << "@SP" << std::endl;
         outputFile << "A=M-1" << std::endl;
         outputFile << "M=-M" << std::endl;
     }
+
+    else if (command == "and") {
+        outputFile << "@SP" << std::endl;
+        outputFile << "AM=M-1" << std::endl;
+        outputFile << "D=M" << std::endl;
+        outputFile << "A=A-1" << std::endl;
+        outputFile << "M=D&M" << std::endl;
+    }
+
 
 }
