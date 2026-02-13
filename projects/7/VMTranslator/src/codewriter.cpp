@@ -29,4 +29,10 @@ void CodeWriter::writeArithmetic(const std::string command) {
         outputFile << "D=M-D" << std::endl;
     }
 
+    if(command == "neg") {
+        outputFile << "@SP" << std::endl;
+        outputFile << "A=M-1" << std::endl;
+        outputFile << "M=-M" << std::endl;
+    }
+
 }
