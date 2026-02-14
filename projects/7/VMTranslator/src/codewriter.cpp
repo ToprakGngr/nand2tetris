@@ -37,6 +37,27 @@ void CodeWriter::writePushPop(InstructionType command, const std::string& segmen
             outputFile << "M=M+1" << std::endl;
             
         }
+
+        if(segment == "local" || segment == "argument" || segment == "this" || segment == "that") {
+            std::string label = segmentTable.at(segment);
+
+            // addr = *local + i, also store the result in D register
+            outputFile << "@" << index << std::endl;
+            outputFile << "D=A" << std::endl;
+            outputFile << "@" << label <<std::endl;
+            outputFile << "A=D+M" << std::endl;
+            outputFile << "D=M" << std::endl;
+            
+            // ram[sp] = ram[addr]
+            outputFile << "@SP" << std::endl;
+            outputFile << "A=M" << std::endl;
+            outputFile << "M=D" << std::endl;
+            
+            // sp++
+            outputFile << "@SP" << std::endl;
+            outputFile << "M=M+1" << std::endl;
+        }
+
     }
 
 }
