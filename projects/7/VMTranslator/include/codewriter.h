@@ -2,11 +2,13 @@
 #define CODEWRITER_H
 
 #include <fstream>
+#include <unordered_map>
 #include "types.h"
 
 class CodeWriter {
     private:
         std::ofstream outputFile;
+        std::unordered_map<std::string, std::string> segmentTable;
     public:
         CodeWriter(const std::string& filename);
         void writeArithmetic(const std::string command);
