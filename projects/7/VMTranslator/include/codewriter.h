@@ -3,10 +3,12 @@
 
 #include <fstream>
 #include <unordered_map>
+#include <string>
 #include "types.h"
 
 class CodeWriter {
     private:
+        std::string currentFileName;
         std::ofstream outputFile;
         std::unordered_map<std::string, std::string> segmentTable;
     public:

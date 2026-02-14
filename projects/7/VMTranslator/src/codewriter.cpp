@@ -1,6 +1,7 @@
 #include <iostream>
 #include "codewriter.h"
 #include <unordered_map>
+#include <filesystem>
 
 CodeWriter::CodeWriter(const std::string& filename) {
     outputFile.open(filename);
@@ -15,6 +16,10 @@ CodeWriter::CodeWriter(const std::string& filename) {
         {"this", "THIS"},      // RAM[3] points to the base of this
         {"that", "THAT"}       // RAM[4] points to the base of that
     };
+
+    // save filename for static operation
+    std::filesystem::path p(filename);
+    currentFileName = p.stem().string();
 
 }
 
@@ -38,7 +43,7 @@ void CodeWriter::writePushPop(InstructionType command, const std::string& segmen
             
         }
 
-        if(segment == "local" || segment == "argument" || segment == "this" || segment == "that") {
+        else if(segment == "local" || segment == "argument" || segment == "this" || segment == "that") {
             std::string label = segmentTable.at(segment);
 
             // addr = *local + i, also store the result in D register
@@ -54,6 +59,20 @@ void CodeWriter::writePushPop(InstructionType command, const std::string& segmen
             outputFile << "M=D" << std::endl;
             
             // sp++
+            outputFile << "@SP" << std::endl;
+            outputFile << "M=M+1" << std::endl;
+        }
+
+        else if(segment == "static") {
+            // label string
+            std::string label = currentFileName + "." + std::to_string(index);
+
+            outputFile << "@" << label << std::endl;
+            outputFile << "D=M" << std::endl;
+            
+            outputFile << "@SP" << std::endl;
+            outputFile << "A=M" << std::endl;
+            outputFile << "M=D" << std::endl;
             outputFile << "@SP" << std::endl;
             outputFile << "M=M+1" << std::endl;
         }
