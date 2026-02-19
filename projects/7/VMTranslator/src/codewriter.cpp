@@ -91,6 +91,27 @@ void CodeWriter::writePushPop(InstructionType command, const std::string& segmen
         }
     }
 
+    if(command == POP_TYPE) {
+        if(segment == "constant") {
+            std::cerr << "Popping a constant value is not allowed.";
+        }
+
+        else if(segment == "local" || segment == "argument" || segment == "this" || segment == "that") {
+            std::string label = segmentTable.at(segment);
+            outputFile << "@" << label << std::endl;
+            outputFile << "D=M" << std::endl;
+            outputFile << "@" << index << std::endl;
+            outputFile << "D=D+A" << std::endl;
+            outputFile << "@R13" << std::endl;
+            outputFile << "M=D" << std::endl;
+            outputFile << "@SP" << std::endl;
+            outputFile << "AM=M-1" << std::endl;
+            outputFile << "D=M" << std::endl;
+            outputFile << "@R13" << std::endl;
+            outputFile << "M=D" << std::endl;
+        }
+    }
+
 }
 
 
