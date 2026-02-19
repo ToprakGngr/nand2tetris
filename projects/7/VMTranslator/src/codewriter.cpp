@@ -94,6 +94,7 @@ void CodeWriter::writePushPop(InstructionType command, const std::string& segmen
     if(command == POP_TYPE) {
         if(segment == "constant") {
             std::cerr << "Popping a constant value is not allowed.";
+            exit(1);
         }
 
         else if(segment == "local" || segment == "argument" || segment == "this" || segment == "that") {
