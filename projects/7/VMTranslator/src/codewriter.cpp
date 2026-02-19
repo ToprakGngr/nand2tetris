@@ -108,6 +108,7 @@ void CodeWriter::writePushPop(InstructionType command, const std::string& segmen
             outputFile << "AM=M-1" << std::endl;
             outputFile << "D=M" << std::endl;
             outputFile << "@R13" << std::endl;
+            outputFile << "A=M" << std::endl;
             outputFile << "M=D" << std::endl;
         }
     }
