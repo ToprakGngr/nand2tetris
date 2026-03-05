@@ -157,6 +157,32 @@ void CodeWriter::writeArithmetic(const std::string command) {
         outputFile << "D=M-D" << std::endl;
     }
 
+    else if(command == "eq" || command == "gt" || command == "lt") {
+        // choose one of the command types according to the command
+        std::string jumpInstruction = ((command != "eq") ? (command == "gt" ? "D;JGT" : "D;JLT" ) : "D;JEQ" );
+        
+        outputFile << "@SP" << std::endl;
+        outputFile << "AM=M-1" << std::endl;
+        outputFile << "D=M" << std::endl;
+        outputFile << "A=A-1" << std::endl;
+        outputFile << "D=M-D" << std::endl;
+        outputFile << "@TRUE_" << jumpCount << std::endl;
+        outputFile <<  jumpInstruction << std::endl;
+        // if comparison fails
+        outputFile << "@SP" << std::endl;
+        outputFile << "A=M-1" << std::endl;
+        outputFile << "M=0" << std::endl;
+        outputFile << "@END_" << jumpCount << std::endl;
+        outputFile << "0;JMP" << std::endl;
+        // if comparison success
+        outputFile << "(TRUE_" << jumpCount << ")" << std::endl;
+        outputFile << "@SP" << std::endl;
+        outputFile << "A=M-1" << std::endl;
+        outputFile << "M=-1" << std::endl;
+        outputFile <<  "(END_" << jumpCount << ")" << std::endl;
+        jumpCount++;
+    }
+
     else if(command == "neg") {
         outputFile << "@SP" << std::endl;
         outputFile << "A=M-1" << std::endl;

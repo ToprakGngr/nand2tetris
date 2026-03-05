@@ -11,7 +11,8 @@ class CodeWriter {
         std::string currentFileName;
         std::ofstream outputFile;
         std::unordered_map<std::string, std::string> segmentTable;
-    public:
+        int jumpCount = 0;
+        public:
         CodeWriter(const std::string& filename);
         void writeArithmetic(const std::string command);
         void writePushPop(InstructionType command, const std::string& segment, int index);
