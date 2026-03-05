@@ -122,6 +122,17 @@ void CodeWriter::writePushPop(InstructionType command, const std::string& segmen
             outputFile << "@" << label << std::endl;
             outputFile << "M=D" << std::endl;
         }
+
+        else if(segment == "temp" || segment == "pointer") {
+            int baseAddr = (segment == "temp") ? 5 : 3;
+            int targetAddr = baseAddr + index;
+
+            outputFile << "@SP" << std::endl;
+            outputFile << "AM=M-1" << std::endl;
+            outputFile << "D=M" << std::endl;
+            outputFile << "@" << targetAddr << std::endl;
+            outputFile << "M=D" << std::endl;
+        }
     }
 
 }
