@@ -33,11 +33,8 @@ int main(int argc, char* argv[]) {
         }
 
         else if(instructionType == POP_TYPE || instructionType == PUSH_TYPE){
-            continue;
+            codeWriter.writePushPop(instructionType, parser.arg1(), parser.arg2());
         }
-
-        std::string arg1 = parser.arg1();
-        int arg2 = parser.arg2();
     }
 
 
