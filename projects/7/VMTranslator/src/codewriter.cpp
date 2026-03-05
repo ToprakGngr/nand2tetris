@@ -146,7 +146,7 @@ void CodeWriter::writeArithmetic(const std::string command) {
         outputFile << "AM=M-1" << std::endl;
         outputFile << "D=M" << std::endl;
         outputFile << "A=A-1" << std::endl;
-        outputFile << "D=D+M" << std::endl;
+        outputFile << "M=D+M" << std::endl;
     }
 
     else if(command == "sub") {
@@ -154,7 +154,7 @@ void CodeWriter::writeArithmetic(const std::string command) {
         outputFile << "AM=M-1" << std::endl;
         outputFile << "D=M" << std::endl;
         outputFile << "A=A-1" << std::endl;
-        outputFile << "D=M-D" << std::endl;
+        outputFile << "M=M-D" << std::endl;
     }
 
     else if(command == "eq" || command == "gt" || command == "lt") {
