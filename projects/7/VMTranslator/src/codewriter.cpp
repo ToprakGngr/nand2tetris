@@ -111,6 +111,16 @@ void CodeWriter::writePushPop(InstructionType command, const std::string& segmen
             outputFile << "@R13" << std::endl;
             outputFile << "A=M" << std::endl;
             outputFile << "M=D" << std::endl;
+        }   
+
+        else if(segment == "static") {
+            std::string label = currentFileName + "." + std::to_string(index);
+
+            outputFile << "@SP" << std::endl;
+            outputFile << "AM=M-1" << std::endl;
+            outputFile << "D=M" << std::endl;
+            outputFile << "@" << label << std::endl;
+            outputFile << "M=D" << std::endl;
         }
     }
 
